@@ -1,0 +1,43 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    char startStop;
+    time_t startTime = 0, endTime = 0;
+    double elapsedSeconds = 0.0;
+    
+    cout << "Simple Stopwatch Program" << endl;
+    cout << "Press 'S' to start and stop the stopwatch." << endl;
+    cout << "Press 'Q' to quit the program." << endl;
+    
+    while (true) {
+        cout << "Press 'S' to start/stop or 'Q' to quit: ";
+        cin >> startStop;
+        
+        if (startStop == 'Q' || startStop == 'q') {
+            break;
+        }
+        else if (startStop == 'S' || startStop == 's') {
+            if (startTime == 0) {
+                startTime = time(NULL);
+                cout << "Stopwatch started." << endl;
+            }
+            else {
+                endTime = time(NULL);
+                elapsedSeconds += difftime(endTime, startTime);
+                startTime = 0;
+                cout << "Stopwatch stopped." << endl;
+                cout << "Elapsed time: " << elapsedSeconds << " seconds" << endl;
+            }
+        }
+        else {
+            cout << "Invalid input. Press 'S' to start/stop or 'Q' to quit." << endl;
+        }
+    }
+    
+    cout << "Exiting the program." << endl;
+    
+    return 0;
+}
